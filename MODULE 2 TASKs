@@ -1,0 +1,55 @@
+Module 2 Create a New PlatForm THEME
+2.1 Design the cloud Dimension Theme
+Lesson
+In this hands-on simulation, you'll learn how to customize your ServiceNow instance to reflect your organization's brand identity. As organizations deploy ServiceNow across multiple environments (Development, Test, Production), maintaining consistent branding while differentiating between instances becomes crucial. You'll use the Theme Builder within the Now Experience Framework to create and apply a custom theme that transforms the look and feel of your instance.
+
+Scenario
+You are the ServiceNow System Administrator for Cloud Dimensions, a growing technology company. The marketing communications team has requested that the ServiceNow instance reflect the company's brand identity. Currently, the instance displays the default ServiceNow logo and color scheme, which doesn't align with Cloud Dimensions' brand guidelines. Your task is to create and deploy a custom theme that incorporates the company's logo, brand colors, and visual preferences.
+
+IMPORTANT: In a production environment, it's crucial to ensure that all theme components are fully accessible before publishing a theme. However, for the purposes of this task, you will Publish the theme to see the changes applied across the instance. Then, you must Unpublish the theme (return to the Default theme) to avoid accessibility issues when completing the remaining tasks.
+
+Task Objectives
+
+1. Create a custom theme named "Cloud Dimensions" using Theme Builder.
+
+2. Configure brand colors including primary (#0B4653) and neutral colors (#CCCCCC). Do not add additional colors.
+
+3. Upload and integrate the company logo into the theme.
+
+4. Select typography and design elements:
+- Lato font
+2.2 Change A company Name
+Task Objectives
+1. Navigate to the Companies module in User Administration.
+
+2. Locate and open the ACME Americas company record.
+
+3. Update the company name to "Cloud Dimensions".
+
+4. On the Cloud Dimensions record, use the Form Builder to include the Manufacturer field.
+
+5. Configure the Manufacturer field on the record by clearing the checkbox.
+2.3 Update The Browser Tab label
+Lesson
+When working with multiple ServiceNow instances—such as Development (DEV), Test, User Acceptance Testing (UAT), and Production (PROD)—it's critical to know which environment you're currently using. System Properties in ServiceNow provide configuration options that control system behavior without requiring code. One essential configuration is the Browser tab title, which adds a visual identifier to your browser tab and throughout the interface, helping prevent costly mistakes like making changes in the wrong environment.
+
+Scenario
+You are the ServiceNow System Administrator for Cloud Dimensions. Your organization has multiple ServiceNow instances for different purposes. You're currently working in the Development (DEV) instance where administrators and developers configure and build applications. To avoid confusion and ensure you always know which instance you're using, you need to configure the browser tab title to display "CD DEV" (Cloud Dimensions Development). This identifier will appear in your browser tab and in contextual elements throughout the platform.
+
+Task Objectives
+1. Navigate to the Basic Configuration system properties.
+
+2. Configure the Browser tab title property to display "CD DEV".
+
+3. Save the configuration and verify the label appears in your browser tab.
+
+4. Identify the Contextual app pill and confirm the DEV label is visible.
+
+5. Add the System Properties page as a favorite for quick future access.
+
+
+
+
+5. Publish the theme and set it as the default for your instance and verify the theme is successfully applied across the instance.
+
+6. Unpublish the theme (to avoid accessibility issues in future tasks).
