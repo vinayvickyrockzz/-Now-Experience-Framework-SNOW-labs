@@ -1,0 +1,18 @@
+Module 5 Develop Knowledge,catalog and flow resources
+
+5.1 Instance Preparation
+Lesson
+User records are the foundation of access management in ServiceNow, establishing the relationship between individuals and your instance. Each user record contains essential information including username, password, contact details, location, and job title. Proper user administration ensures that the right people have the right access to maintain both security and functionality.
+
+Scenario
+As the System Administrator, you have been asked to prepare the instance for knowledge management operations. The Human Resources team will need to create, review, publish, and approve knowledge articles, but first you must ensure that user records are properly configured. Your immediate task is to verify that Cloud Dimensions is set as the primary company and assign Megan Burke, a new HR team member, to the Cloud Dimensions company record.
+
+Task Objectives
+
+1. Navigate to the list of companies and configure the list layout to contain the Primary column. 
+
+2. In the Primary column, mark "Your name here" as false and Cloud Dimensions as true.
+
+3. Navigate to Megan Burke's user record and configure the User form to include the Company field.
+
+4. Set Cloud Dimensions as the Company on Megan's user record.
