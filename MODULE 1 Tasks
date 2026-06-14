@@ -1,0 +1,218 @@
+Incident Management and Application Access MODULE 1 Tasks
+1.1 Set Up New HR users
+Lesson
+A User is an individual who has been granted access to your ServiceNow instance. Each user is identified by a unique User ID, which serves as their login credential for the platform. Users are the foundation of access control and are assigned roles and permissions based on their responsibilities.
+ Scenario
+You are a ServiceNow administrator supporting the HR department. Your HR manager has requested that you create two new user accounts for members of the HR technical support team: Bob and Jane. Both will be providing technical support for HR systems and need access to the ServiceNow platform.
+
+Task Objective
+1. Create two new users in ServiceNow with the following information:
+User 1:
+User ID: Bob.HR_Support
+First Name: Bob
+Last Name: HR Support
+Department: HR
+Email: Bob@example.com
+Active Checkbox: Enabled
+
+User 2:
+User ID: Jane.HR_Support
+First Name: Jane
+Last Name: HR Support
+Department: HR
+Email: Jane@example.com
+Active Checkbox: Enabled
+After creating both users, verify they appear in the Users list.
+
+1.2.Create An HR favorite
+Lesson
+Groups are a collection of users who share a common purpose or perform similar tasks. Groups are used to streamline access management by assigning permissions collectively rather than individually. Common use cases for groups include approving change requests, resolving incidents, receiving email notifications, or managing the Service Catalog. Users are typically assigned to one or more groups, forming a hierarchical structure where groups define shared access and responsibilities.
+ 
+Scenario
+You are a ServiceNow administrator who frequently works with HR-related groups to manage access permissions and assignments. To improve your efficiency, you need to create a quick way to access all groups associated with the HR department. These groups might be named differently across your organization&mdash;some may contain "HR" while others use the full term "Human Resources."
+Task Objective
+Create and save a favorite that displays all groups containing "HR" or "Human Resources" in their name.
+
+Filter Requirements:
+
+- Show groups where the Name contains "HR
+
+- Select the "OR" operator
+
+- Show groups where the Name contains "Human Resources"
+
+ 
+
+Favorite settings: 
+
+- Select "Run" to apply your filter
+
+- Add it to your favorites using the star icon in the filter pill or "Create favorite" from the hamburger menu.
+
+- Name: HR Groups
+
+1.3.Add users To HR Groups
+Lesson
+Groups in ServiceNow are collections of users who share common responsibilities or access requirements. They're fundamental for organizing teams, managing assignments, and controlling access to different parts of the Platform.
+
+Groups become especially powerful when combined with assignment rules, access controls, and service catalog visibility - they're the foundation of proper user organization in ServiceNow.
+
+Scenario
+You are a ServiceNow administrator managing access for the HR department. Two new HR technical support team members, Bob HR Support and Jane HR Support, have just been onboarded and need access to handle payroll cases and general HR tier 1 support tickets. To grant them the appropriate permissions, you need to add both users to the HR Payroll and HR Tier 1 groups. If the groups do not exist, create them.
+
+Task Objectives
+1. Add Bob HR Support and Jane HR Support to the following groups:
+
+- HR Payroll
+- HR Tier 1
+
+2. After adding both users to both groups, verify that the group memberships are correctly reflected in the instance.
+
+1.4.Configure Impersonating Access For HR
+Lesson
+Impersonation allows administrators to log in as another user to see exactly what that user sees in ServiceNow. This is essential for troubleshooting access issues, testing configurations, and validating user experiences without needing the actual user's credentials.
+
+Why Use Impersonation?
+
+Troubleshoot access problems - See exactly what a user can and cannot access.
+Test role configurations - Verify that roles provide the correct permissions.
+Validate personalized settings - Check homepages, dashboards, and UI customizations.
+Reproduce reported issues - Experience problems from the user's perspective.
+Quality assurance - Test new features as different user types before deployment.
+Scenario
+You are a ServiceNow System Administrator responsible for the HR application. Bob HR Support and Jane HR Support are senior members of your HR technical team who need the ability to impersonate other users for troubleshooting and testing purposes. Because HR data is extremely sensitive and protected by various laws, users must have both the sn_hr_core.admin role and the impersonator role to impersonate users and view HR data.
+
+Task Objective
+Configure impersonation access for Bob HR Support and Jane HR Support:
+
+1. Add the impersonator role to the HR Admin group.
+
+2. Add Bob HR Support and Jane HR Support as members of the HR Admin group.
+
+3. Verify that Jane HR Support has inherited the sn_hr_core.admin and impersonator roles through her group membership.
+
+1.5 Verify HR Case Creation
+
+Scenario
+You are a ServiceNow System Administrator who needs to test the HR Case Management workflow from the perspective of Jane HR Support, a member of the HR technical team. An employee named Beth Anglin has contacted HR regarding a payroll issue — her direct deposit hasn't appeared in her account as expected.
+
+Task Objective
+
+While impersonating Bob HR Support, create and assign an HR case with the following details:
+
+Case Information
+- Employee: Beth Anglin
+- COE (Center of Excellence): HR Payroll Case
+- HR Service: Direct Deposit Inquiry
+- Work notes: Beth thought her paycheck would be deposited by now, but it is not showing on her account.
+
+Case Assignment
+Assigned to: Jane HR Support
+State: Ready
+1.6 Create A New Incident
+Lesson
+An incident is a record of an unplanned interruption or degradation of service that needs to be resolved to restore normal operations. Incidents are the foundation of IT Service Management (ITSM) in ServiceNow.
+
+When creating incidents, be specific in descriptions: "Cannot print to 3rd floor color printer" is better than "printer broken". Keep the incident current with work notes as you investigate the submitted record. Many organizations create incident templates for common issues to speed up logging. When closing, always include what fixed the issue in the Resolution Notes field.
+
+Scenario
+You are Beth Anglin, an ITIL agent working the service desk. Fred Luddy has just called reporting that his Conference Event Mobile App for Staff won't launch and is showing error 555. The conference starts in 3 hours, making this urgent. Your task is to create and document this incident properly in ServiceNow.
+
+Task Objectives
+
+1. Impersonate Beth Anglin to log the incident.
+
+2. Create a complete incident record with the following filled in:
+
+- Caller: Fred Luddy
+- Category: Software
+- Subcategory: None
+- Short Description: Cannot get the Conference Event Mobile app for staff to launch. It is flashing error 555.
+- Description: It was working yesterday, but not this morning. This is urgent! The event starts in 3 hours.
+- Service: Conference Event Services
+- Service Offering: Event Mobile for Staff Service Offering
+- Configuration item: Event Mobile for Staff Application
+- Channel: Phone
+- State: (Leave as New)
+- Impact: 1-High
+- Urgency: 1-High
+- Priority: (Automatically calculated as 1-Critical)
+- Assignment group: (Leave blank)
+- Assigned to: (Leave blank)
+
+
+3. Document both internal work notes and customer-facing comments.
+
+- Work notes: No outages have been reported, am routing to the Conference Event App support team.
+- Additional comments: Fred, we are working on getting the app up and running.
+
+4. Ensure proper service mapping and assignment routing.
+
+1.7 Receive The Work Assignments 
+Lesson
+Favorites in ServiceNow allow you to bookmark frequently accessed pages, forms, lists, reports, or dashboards for quick access. They appear as a dedicated menu in your navigation, eliminating the need to repeatedly search through the Application Navigator.
+
+Example use cases – Service Desk Agent:
+- My Open Incidents
+- Unassigned Queue
+- Incident Dashboard
+- Knowledge Base Search
+Scenario
+You are a ServiceNow agent who frequently needs to access the My Groups Work module to review unassigned work items for your team. To improve your workflow efficiency, you need to add this module to your Favorites for quick access. Your task is to add the My Groups Work module as a favorite, and verify it appears in your Favorites menu.
+
+Task Objectives
+1. Navigate to the Service Desk application in the All menu.
+
+2. Add the My Groups Work module to your Favorites.
+
+3. Access the module through the Favorites menu.
+
+1.8 Explore the Service Operations WorkSpace
+Lesson
+The Service Operations Workspace provides a unified interface for managing IT Service Management (ITSM) workflows. It enables IT agents to handle the lifecycle of task records—such as incidents, requests, and walk-ups—through a modern, streamlined interface. In this simulator task, you will take on the role of an IT agent and work an incident from assignment through resolution using the Service Operations Workspace.
+
+Scenario
+You are Beth Anglin, an IT support agent. A critical incident has been reported by Fred Luddy regarding an error with the Mobile Event App. Your task is to locate the unassigned critical incident in the Service Operations Workspace, assign it to yourself, use Agent Assist to find a relevant knowledge article, share the article with the caller, and resolve the incident with appropriate resolution notes.
+
+Task Objectives
+
+This task requires you to impersonate another user. You must end the impersonation before selecting Show hint or Validate task.
+
+1. Impersonate Beth Anglin.
+
+2. Navigate the Service Operations Workspace as Beth, and locate unassigned critical incidents.
+
+3. Accept incident assignment and take ownership of the record.
+
+4. Leverage Agent Assist to find and attach relevant knowledge articles to incidents:
+- Select the graduation cap icon in the right-side panel of the Service Operations Workspace to open Agent Assist.
+- Locate and attach the article: Mobile Event App for Staff – Error 555
+
+5. Resolve incidents with appropriate resolution codes and notes
+- Resolution code: Workaround provided
+- Resolution notes: Used vendor instructions to restart client.
+1.9 Explore the Employee Center
+Lesson
+The Employee Center serves as a centralized portal for addressing internal employee needs across departments such as HR, IT, and Legal. As a default ServiceNow Store application, it provides employees with a one-stop-shop to access services, submit requests, track incidents, and find helpful resources. In this simulation, you'll navigate the Employee Center from an employee's perspective to understand how end-users interact with the platform and resolve their issues.
+
+Scenario
+You are a ServiceNow administrator learning how to support end-users who interact with the Employee Center Portal. To better understand the employee experience, you need to impersonate an employee user and navigate through the portal to see how they access services, view their requests, and find resolution information for their incidents.
+Fred Luddy, one of your organization's employees, recently reported an issue with the Conference Event Mobile app and received a resolution. Your task is to impersonate Fred, navigate to the Employee Center, review his submitted requests, and verify that he can access the knowledge base article that helped resolve his incident.
+
+Task Objectives
+
+This task requires you to impersonate another user. You must end the impersonation before selecting Show hint or Validate task.
+
+1. Impersonate Fred Luddy.
+
+2. Navigate to and explore the Employee Center Portal interface.
+
+3. Locate and review submitted requests and incidents.
+
+4. Access the incident Fred reported regarding the Conference Event Mobile app.
+
+5. Mark the associated article as helpful.
+
+6. Properly end the impersonation session.
+
+To begin, navigate to the User menu > Impersonate user.
