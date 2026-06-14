@@ -1,0 +1,168 @@
+Now Assist For  ITSM
+MODULE 3: Customize list,forms and field Values
+3.1 Create a New Field
+Lesson
+Organizations have unique requirements that standard ServiceNow fields may not address. Custom fields allow you to track certain things, capture company-specific categories, record compliance data, or add any business-specific information without modifying core system functionality.
+
+Scenario
+As an IT Product Owner, you are preparing for a new internal product launch. You need a way to identify and track incidents and inquiries specifically related to this product launch pilot program. To accomplish this, you will add a custom "Pilot" field to the Incident table that will allow your team to flag and filter incidents associated with the new product rollout.
+
+Task Objectives
+Your task is to add a new custom field called "Pilot" to the Incident table. This field should be a True/False checkbox that defaults to "false" for new incidents.
+3.2 View And Monitor HHD incidents
+Lesson
+Lists in ServiceNow display collections of records from specific tables, with each row representing a record and each column representing a field. Views allow you to customize how lists and forms display, tailoring them to specific roles or use cases. System administrators can create multiple views for the same table to meet different business needs.
+
+The List Collector tool enables you to select which fields appear in a view and define their display order. You can add fields from the current table or use dot-walking to include fields from related tables through reference fields. Related table fields appear in green with a plus sign (+).
+
+List Context Menus provide flexible controls for interacting with data:
+- List controls menu: Accessed via the icon next to the list title for managing the entire list.
+- Column options menu: Accessed by hovering over column headers to configure specific columns.
+- Right-click context menu: Provides actions for specific cell values.
+
+Scenario
+As an IT Product Owner managing a new internal product launch, you need a dedicated view of the Incident table that focuses specifically on pilot program incidents. Your team needs to quickly identify pilot incidents and see related configuration item details without the clutter of standard incident fields. You will create a custom list view called "HHD" that displays only the relevant fields for tracking product launch incidents, including configuration item information accessed through dot-walking.
+
+Task Objectives
+
+You may open a new tab or window during this exercise. If you do, make sure to close it once the task has been validated.
+
+You need to create a custom list view for the Incident table that will help you track product launch pilot incidents. The view should be named "HHD" and display specific fields including the Pilot field you created earlier, Configuration Item details, and remove unnecessary fields like Priority and Assignment group.
+
+Working in the core environment, create a new list view called "HHD" for the Incident table.
+
+1. Right-click any column header in the Incident list, select Configure, then select List Layout.
+
+2.  Configure the list to display the following fields:
+     - Number
+     - Pilot
+     - Category
+     - Opened
+     - Configuration item
+     - Configuration item.Model ID
+     - Configuration item.Install Status
+     - Short description
+     - Caller
+     - State
+3.3 Configure the Application Menu and Module
+Lesson
+Application menus and modules provide organized navigation in ServiceNow, allowing users to quickly access the records and features they need. An application menu is a container that appears in the Application Navigator (such as "Self-Service" or "Incident"), while modules are the individual items within those menus (such as "All" or "My Incidents").
+
+System administrators can create custom application menus and modules to support specific business processes or user groups. Custom application menus and modules improve user efficiency by providing quick access to frequently used records and tailored navigation paths for specific workflows or teams.
+
+Scenario
+As the IT Product Owner for the new Holographic Handheld Devices (HHD) product launch, you need to create a dedicated navigation structure for your product management team. Currently, team members must navigate through standard Incident menus and manually apply filters to find HHD-related incidents and inquiries. To streamline their workflow, you will create a custom "HHD" application menu with a specialized "Incidents and Inquiries" module that automatically displays only HHD pilot incidents using the custom view you created earlier.
+
+Task Objectives
+You need to create a new application menu called "HHD" that appears in the Application Navigator alongside existing menus like Self-Service and Incident. Within this menu, create a module called "Incidents and Inquiries" that displays incidents filtered by service offering containing "HHD" and uses the HHD list view you created previously. The menu and module should be accessible to users with the "itil" role.
+
+
+1. Create an application menu titled "HHD". Fill in the form fields:
+    - Title: HHD
+    - Roles: itil
+    - Category: Leave as "Custom Applications"
+    - Hint: Holographic Handheld Devices
+
+2. Select the Application Menu record you just created. Create a module titled "Incidents and Inquiries" that displays the Incident table using the HHD view, filtered to show only incidents where Service offering contains "HHD".
+    - Title: Incidents and Inquiries
+    - Order: 10
+    - Hint: HHD Incidents and Inquiries
+    -Roles: itil
+    - Link type: List of Records
+    - Table: Incident [incident]
+    - View name: HHD
+    - Filter: Service offering | contains | HHD
+create a HHD serviceoffering and a incident record for that option
+3.4 ADD a field to a form
+Lesson
+Form Builder is an application that allows administrators to add and configure form elements (fields, formatters, and embedded lists), select views the layouts will apply to, apply policies and rules, and preview customizations. Form Builder provides a modern interface for modifying forms alongside traditional methods like Form Design and Form Layout.
+
+Scenario
+As the Service Desk Manager, you need fields added to an existing form so your team can maintain the quality of data needed to accurately identify and record issues related to the new HHD training device. Having this data will allow the technical training team to improve the overall quality of the support they provide to employees using the new device.
+
+Your task is to add a Pilot checkbox field to the incident form. This field will help your team track whether incidents are related to the pilot rollout of the new HHD training device.
+
+Task Objectives
+
+Complete the following objectives to successfully add the Pilot field to the incident form:
+
+1. Navigate to the incident table and open a new incident record from the Default view.
+
+2. Access Form Builder from the incident form.
+
+3. Move the existing Pilot field (true/false checkbox) below the Configuration item field in the Default view.
+
+4. Verify the Pilot field displays correctly on the incident form.
+Lesson
+Choice lists in ServiceNow provide standardized dropdown options for fields, enabling consistent data entry and improved reporting capabilities. Understanding how to configure choice lists is essential for administrators who need to customize the platform to meet specific business requirements.
+
+3.5 Identify Firmware Incidents and Inquries
+Scenario
+Your IT department has identified a gap in incident categorization. Hardware-related incidents involving firmware issues cannot be properly classified because no "Firmware" subcategory exists. You've been tasked with adding this subcategory as a dependent value under the Hardware category to improve incident tracking and reporting for firmware-related issues.
+
+Task Objectives
+1. Navigate to the Incident module and create a new incident record.
+
+2. Set the Category to "Hardware", then right-click the Subcategory field label and select Configure Choices.
+
+3. Add "Firmware" as a new subcategory option.
+
+4. Position Firmware before Keyboard in the list.
+
+5. Verify the new subcategory is available and functions correctly as a dependent value for Hardware.
+
+3.6 Organize and track Business services
+Lesson
+Services and Service Offerings in ServiceNow provide a structured way to organize and track the business services and specific offerings your organization supports. Services represent high-level business capabilities, while Service Offerings are the specific products or services delivered to users. Understanding how to create and configure these records is critical for effective incident management, as they enable proper categorization and tracking of issues related to specific business services.
+
+Scenario
+Your organization has recently acquired Infinity HHD 3D handheld projectors for training purposes. To properly track incidents and requests related to this new equipment, you need to establish the appropriate service structure in ServiceNow. You've been tasked with creating a new Business Service called "Training" and a corresponding Service Offering for "Infinity (HHD)" to ensure incidents can be accurately categorized and routed to the appropriate support teams.
+
+Task Objectives
+1. Navigate to the Business Service table (All > CSDM > Sell and Consume > Business Service) and create a new "Training" Service record. Complete the form as follows:
+
+- Name: Training
+- Owned by: Annette Frietas
+- Used for: Production
+- Operational status: Operational
+- Service classification: Business Service
+- Approval group: CAB Approval
+
+2. Create a new Service Offering (All > CSDM > Sell and Consume > Business Service Offering) for "Infinity (HHD)" under the Training service. Complete the Offering form as follows:
+
+- Name: Infinity (HHD)
+- Owned by: Annette Frietas
+- Parent: Training
+- Used for: Production
+- Operational Status: Operational
+- Approval group: CAB Approval
+- Business criticality: 2 – somewhat critical
+- Short Description: Infinity (HHD) 3D handheld projectors.
+- Description: Infinity (HHD) 3D handheld projectors which show 3D images and videos.
+
+3. Verify both records are created successfully and available for incident categorization.
+3.7 Enable Auto Assignments of incidents
+Lesson
+Groups in ServiceNow are fundamental organizational units that enable efficient assignment and management of work across teams. By creating groups, adding members, and assigning appropriate roles, administrators establish the foundation for proper access control and workload distribution. Groups can be designated as support teams for services and offerings, ensuring incidents and changes are routed to the correct personnel with the necessary permissions to fulfill their responsibilities.
+
+Scenario
+Your organization's new Training service and Infinity (HHD) offering require dedicated support. The IT leadership has identified four team members who will provide technical support for training-related technology issues. You've been tasked with creating a new support group called "Training Technology Support," adding the designated team members, assigning the appropriate ITIL role, and configuring this group as the support and change group for both the Training service and Infinity (HHD) offering to ensure proper incident routing and change management.
+
+Task Objectives
+1. Create a new group named "Training Technology Support".
+
+2. Add these four team members to the group:
+
+- Beth Anglin
+- Bow Ruggeri
+- David Loo
+- Annette Frietas
+
+3. Assign the itil role to the group to provide necessary permissions.
+
+4. Configure the Training business service to use the 'Training Technology Support' group for Support group and the Change group.
+
+5. Configure the Infinity (HHD) service offering to use the 'Training Technology Support' group for Support group and the Change group
+
+
+
