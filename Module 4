@@ -1,0 +1,292 @@
+MODULE 4 Build and secure table data
+4.1 Create a Table,field and list layout
+Lesson
+ServiceNow stores and manages data through a structured database framework. Tables are fundamental data structures that contain multiple records. Each record consists of various fields (individual pieces of data such as text, numbers, or dates), each populated with specific values.
+
+Tables can extend other tables, creating parent–child relationships where the child table inherits all fields from the parent. This is particularly important in the Configuration Management Database (CMDB), where specialized hardware types extend the base Hardware table.
+
+The System Dictionary is a comprehensive repository that defines every table and field in the ServiceNow database, accessible at All > System Definition > Dictionary.
+
+Custom tables created in the Global scope begin with a u_ prefix, while tables in custom application scopes use an x_ prefix. Following proper naming conventions helps maintain clarity about table relationships and inheritance.
+
+Scenario
+The IT department has just acquired a fleet of Holographic Handheld Devices (HHDs), a new type of hardware asset that requires tracking beyond standard hardware specifications.
+
+Your IT Asset Management team needs to track firmware versions for these devices to ensure compliance with security policies and troubleshoot compatibility issues. The Service Desk team also needs a customized view that displays the most relevant information for quick reference when handling support tickets.
+
+Your task is to extend the existing Hardware table to create a specialized HHD table, add a custom firmware-tracking field, and configure the list layout so that support staff can efficiently view critical device information.
+
+Task Objectives
+1. Create a custom table in the Global scope named "Holographic Handheld HHD" that extends the Hardware table and apply proper naming conventions (u_cmdb_ci_hardware_hhd) to maintain CMDB structure visibility.
+
+2. Navigate to the All menu to find the table you just created. Right-click on any column header, then select Configure > List Layout. Create a firmware version field for this table with the following values:
+
+- Type: String
+- Column label: Firmware version
+- Column name: (autofilled)
+- u_firmware_version
+- Max Length: 40
+
+3. Configure the list layout with 9 specific columns in this order:
+- Name
+- Serial Number
+- Asset tag
+- Firmware version
+- Support group
+- Installed
+- Install Status
+- Assigned to
+- Comments
+
+4. Once the Firmware Version field is created, navigate to All > Holographic Handheld HHD > Holographic Handheld HHDs.
+
+4.2 Arrange Form Elements
+Lesson
+The Form Builder allows administrators to customize how information displays on record forms. Administrators can add and configure form elements including fields, formatters, and embedded lists, all within an intuitive drag-and-drop interface.
+
+Form Builder can be accessed in three ways:
+- From any record: Configure > Form Builder (opens in a new window)
+- Through Related Links on a form
+- The Table Builder, on the Forms tab
+
+Form Builder enables administrators to:
+- Add, remove, and reorder fields on forms.
+- Select which views the layouts apply to.
+- Configure policies and rules.
+- Preview customizations before saving.
+- Use dot-walking to add related fields from parent tables (e.g., adding a user's email by dot-walking from the Assigned to field).
+
+Scenario
+The Service Desk team has started receiving support requests for the new Holographic Handheld Devices (HHDs). The support technicians report that the default form layout isn't displaying the most critical information in a logical order, making it difficult to quickly assess device issues and assign work.
+
+Additionally, when assigning HHD issues to technicians, the support team needs to quickly contact the assigned person via email. Currently, they have to manually look up user records to find email addresses, which slows down response times.
+
+Your task is to configure the HHD form to display fields in a more intuitive order and use dot-walking to add the assignee's email address directly to the form. You'll also add this email field to the list view so support staff can see assignee contact information at a glance when reviewing multiple devices.
+
+Task Objectives
+
+1. From the Holographic Handheld HHDs table you created in the previous task, select an existing record. If an existing record does not exist, create a placeholder record and name it anything you'd like. On this record, right-click on the form header or select the Additional actions menu to navigate to Configure > Form Builder.
+
+2. Using Add form elements on the left hand pane, configure a form layout by adding and arranging 10 specific fields in this order:
+- Name
+- Serial Number
+- Asset tag
+- Firmware version
+- Support group
+- Installed
+- Install Status
+- Assigned to
+- Comments
+- Fault count
+
+3. Apply dot-walking to add a related field (Assigned to.Email) underneath the Assigned to field.
+
+4. Verify that dot-walked fields automatically populate with related data in a new record.
+
+5. Verify that dot-walked fields automatically populate with related data in a new record.
+4.3 Update An Application Menus
+Lesson
+Application menus organize related modules in ServiceNow's navigation panel, helping users quickly access the functionality they need. Modules are the individual menu items within an application menu that link to specific pages, lists, forms, or other content.
+
+Creating a new application menu:
+- Navigate to All > System Definition > Application Menus.
+- Select New and complete the required details (name, description).
+- Save to add modules immediately, or Submit to return to the list.
+
+Creating modules within an application:
+- Open the application menu record.
+- Navigate to the Modules related list.
+- Select New to create and associate a module with the application menu.
+- Configure the module's Title, Order (determines position in menu), and Link Type (what happens when selected).
+
+Scenario
+Your HHD table and form configurations are complete, and the Service Desk team is ready to start creating device records. However, they've reported that the navigation isn't intuitive—there's no quick way to create a new HHD record without going through the list view first.
+
+Your task is to create a "Create New" module that allows users to quickly open a blank HHD form, and rename the existing list module to improve clarity for end users.
+
+Task Objectives
+1. Access and edit an existing application menu using the Edit Application icon.
+
+2. Create a new module within  the HHD application menu:
+- Title: Create New
+- Application menu: HHD
+- Order: 100
+
+3. Configure a module's Link Type to open a new record form:
+- Link type: New Record
+- Table: Holographic Handheld HHD [u_cmdb_ci_hardware_hhd]
+
+4. Verify that menu changes are immediately reflected in the navigation panel
+4.4 Add Access controls
+Lesson
+Roles in ServiceNow are collections of permissions that control what users can see and do within the platform. They act as security containers that grant access to specific applications, modules, tables, records, and functionality. Instead of assigning permissions to individual users, administrators assign roles, making security management scalable and consistent.
+
+Roles ensure users only access what they need for their job functions, following the principle of least privilege. They create clear boundaries between different teams and responsibilities (IT staff vs. HR staff vs. managers). Assigning a single role grants multiple permissions at once, rather than configuring access individually. Role-based access control (RBAC) helps meet regulatory requirements by documenting who can access sensitive data.
+
+Scenario
+Your organization has deployed a new custom application called "HHD" (Holographic Handheld Devices) to track specialized hardware in the CMDB. During the initial table creation, ServiceNow automatically generated the u_holographic_handheld_hhd_user role and associated access controls. However, the application was initially configured with the itil role, which grants access to all IT staff.
+
+Your task is to restrict access so that only users assigned the u_holographic_handheld_hhd_user role can see and use the HHD application and its modules.
+
+Task Objectives
+1. Verify you see the u_holographic_handheld_hhd_user.
+
+2. Add the u_holographic_handheld_hhd_user role to the HHD application and remove the itil role.
+
+3. Modify each of the HHD modules to add the u_holographic_handheld_hhd_user role to each of the modules (removing the itil role).
+4.5 Grant Role To support Groups
+Lesson
+In ServiceNow, groups provide an efficient way to manage role assignments for multiple users simultaneously. Rather than assigning roles to individual users one at a time, administrators can assign roles to groups, and all members of those groups automatically inherit the assigned roles.
+
+Scenario
+Your organization has successfully created the HHD (Holographic Handheld Devices) application and configured role-based access controls. The u_holographic_handheld_hhd_user role has been created and applied to the application menu and modules, but there's a problem: no users can actually access the HHD application yet!
+
+The development team forgot to assign the new role to the support groups that need it. The Service Desk and Training Technology Support teams are responsible for managing HHD devices, but they currently lack the necessary role to view or work with the HHD application.
+Your task is to grant the u_holographic_handheld_hhd_user role to both support groups so their members can begin working with holographic handheld devices in ServiceNow.
+
+Task Objectives
+1. Add the u_holographic_handheld_hhd_user role to the Service Desk group.
+
+2. Add the u_holographic_handheld_hhd_user role to the Training Technology Support group
+
+4.6 Test Visibility Settings
+Lesson
+User impersonation is a critical administrative function in ServiceNow that allows administrators to view the platform exactly as another user would see it. This capability is essential for troubleshooting access issues, verifying role-based permissions, and ensuring that security configurations are working as intended. By impersonating users, you can confirm that application visibility and functionality align with assigned roles and group memberships without needing to log in as that user or modify your own permissions temporarily.
+
+Scenario
+The u_holographic_handheld_hhd_user role has recently been added to specific support groups to grant access to the Holographic Handheld Device (HHD) application. As an administrator, you need to verify that access controls are working properly. Users who belong to the HHD support groups should see the application and its modules, while users outside those groups should not have access, even if they have other roles like itil.
+
+Your task is to impersonate two users with different access levels and confirm the application visibility is configured correctly.
+
+Task Objectives
+
+This task requires you to impersonate another user. You must end the impersonation before selecting Show hint or Validate task.
+
+
+1. Test access for a user without HHD group membership:
+- Impersonate Bernard Laboy
+- Navigate to the HHD application
+- Confirm that Bernard cannot see or access the HHD application and its modules
+
+2. Test access for a user with HHD group membership:
+- Impersonate Annette Frietas.
+- Locate the HHD application and expand it to confirm Annette can see all three modules.
+- Verify that Annette Frietas can submit a record by filling in all required fields before submitting the record (enter any placeholder data as needed for testing purposes).
+4.7 Establish Access Control Rules
+Lesson
+Access Control Lists (ACLs) are the foundation of data security in ServiceNow. They define who can perform specific operations (create, read, update, delete) on tables and fields. While application menus and modules control what users can see in the interface, ACLs control what data users can actually access and manipulate. In this simulation, you'll learn to create granular access controls that restrict incident records based on business requirements, ensuring that only authorized users can work with sensitive HHD-related incidents.
+
+Scenario
+Your organization has successfully configured the HHD application interface and assigned the u_holographic_handheld_hhd_user role to support groups. However, there's a critical security gap: while the HHD application menu is hidden from most users, IT staff with the itil role can still see ALL incidents in the system—including HHD incidents—when they navigate to incident lists.
+
+This creates a problem. HHD incidents contain sensitive information about holographic handheld devices that should only be accessible to specialized support teams (Service Desk and Training Technology Support), not the entire IT organization.
+
+Your task is to elevate your security privileges and create three Access Control rules on the Incident table that restrict read, write, and create operations for HHD incidents. These rules will ensure that only users with the u_holographic_handheld_hhd_user role can access incidents where the Service Offering is "Infinity (HHD)".
+
+Task Objectives
+1. Elevate the admin role to security_admin.
+
+Note: You will be creating 3 ACL records on the Incident table for the u_holographic_hhd_user role.
+
+2. Create a new ACL record with the following filled in:
+- Type: Record (keep default)
+- Operation: read
+- Admin overrides: selected
+- Active: selected
+- Name: Incident [incident]
+- Description: u_holographic_handheld_hhd_user role required to read HHD incident records.
+- Role: u_holographic_handheld_hhd_user
+
+3. Under the Data Condition section, add a  filter condition:
+- Service offering | is | Infinity (HHD)
+
+Note: When the first new ACL record is populated, Save the record, select Continue. Once it is saved, you will return to that same ACL record.
+
+4. Verify Security Rules and Update the form as follows (you will use Insert and Stay to populate the form again).
+
+5. Verify Security Rules and use Insert and Stay to update the form with the following: 
+- Operation: write
+- Description: u_holographic_handheld_hhd_user role required to write HHD incident records.
+- Role: u_holographic_handheld_hhd_user
+- Data Condition: Service offering | is | Infinity (HHD) (auto-fills)
+- Verify Security Rules and Insert and Stay.
+
+6. Verify Security Rules and use Insert and Stay to update the form with the following:
+-  Operation: create
+- Description: u_holographic_handheld_hhd_user role required to create HHD incident records.
+- Role: u_holographic_handheld_hhd_user
+- Data Condition: Service offering | is | Infinity (HHD) (auto-fills)
+- Verify Security Rules and update the record.
+4.8 Create a new ACL
+Lesson
+While table-level Access Control Lists (ACLs) protect entire records, field-level ACLs provide granular security for individual columns within those records. This fine-grained control is essential when certain fields contain sensitive data that requires additional protection beyond general table access. In this simulation, you'll learn to create a specialized role and apply it to a field-level ACL, ensuring that only authorized users can modify a specific field while others can still work with the rest of the record.
+
+Scenario
+Your organization is preparing to import a batch of HHD (Holographic Handheld Device) records into the system. Each device has a unique asset tag number that serves as its official identifier for inventory tracking, financial reporting, and compliance purposes.
+
+The problem: If members of the Service Desk and Training Technology Support groups can edit the Asset tag field, accidental changes or typos could create serious inventory discrepancies, financial audit failures, and compliance violations. Asset tags should only be modified by a specialized asset management team who follow strict procedures.
+However, you still want the support teams to create and update other fields on HHD records (like location, assignment, or status)—just not the Asset tag field.
+
+Your task is to create a new role called u_hhd_asset_tagger and configure a field-level write ACL on the Asset tag field that requires this specialized role, effectively locking the field from modification by general support staff while keeping the rest of the record editable.
+
+Task Objectives
+1. With the elevated security_admin role, create a new role with the following:
+- Name: u_hhd_asset_tagger
+- Application: Global
+
+2. Navigate to the list of Access Control (ACL), and filter the list of rules for u_cmdb_ci_hardware_hhd with the write operation.
+
+3. Locate the Name field and select Holographic Handheld HHD [u_cmdb_ci_hardware_hhd], then select Asset tag field creating tag as asset tag.
+
+4. Insert and stay, then add u_hhd_asset_tagger under Required roles.
+
+5. Update the Description field with, "Asset Tagger access control on u_cmdb_ci_hardware_hhd"
+4.8 Grant a Role for Tagging
+Lesson
+Groups in ServiceNow serve as containers for organizing users who share common responsibilities and access requirements. By assigning roles to groups rather than individual users, administrators create scalable, maintainable access control structures. When combined with field-level ACLs, groups enable precise delegation of specialized tasks to specific teams or individuals. In this simulation, you'll create a purpose-built group for asset tag management and assign the appropriate role and membership.
+
+Scenario
+You've successfully created the u_hhd_asset_tagger role and configured a field-level ACL that restricts write access to the Asset tag field on HHD records. However, the role currently has no users assigned to it, which means nobody—not even the intended asset manager—can update asset tags.
+
+Your organization has identified Annette Frietas as the designated asset manager for HHD devices. She's responsible for maintaining accurate asset tag records, performing physical inventory audits, and ensuring compliance with asset tracking policies. Annette needs the ability to update the Asset tag field, but for accountability and audit purposes, management wants this capability granted through a dedicated group rather than a direct role assignment.
+
+Your task is to create a new group called "HHD Asset Taggers," assign the u_hhd_asset_tagger role to this group, and add Annette Frietas as a member. This structure provides clear documentation of who has asset tagging privileges and makes it easy to add or remove asset taggers in the future.
+
+Task Objectives
+1. With the security_admin role, create a new HHD Asset Tagger group with the following:
+- Group Name: HHD Asset Taggers
+- Add Role: u_hhd_asset_tagger
+- Add Group member: Annette Frietas
+4.9 Test the Asset Tag field
+Lesson
+After implementing security controls, thorough testing is essential to confirm they work as intended. Impersonation provides a safe, non-disruptive method to validate access controls by temporarily viewing the system through another user's perspective. This simulation combines impersonation with field-level ACL testing to verify that your security configuration correctly restricts and permits access to the Asset tag field based on role membership.
+
+Scenario
+You've completed a comprehensive security implementation for HHD asset tag management:
+- Created the u_hhd_asset_tagger role.
+- Configured a field-level write ACL on the Asset tag field requiring this role.
+- Established the HHD Asset Taggers group with the role assigned
+- Added Annette Frietas as the sole member of this group.
+Before announcing this new security model to the organization, you need to verify it works correctly.
+
+Specifically, you must confirm that:
+1. Regular HHD users cannot modify asset tags: Beth Anglin is a member of the Service Desk group with the u_holographic_handheld_hhd_user. role. She should be able to create HHD records, but the Asset tag field should be read-only (grayed out) for her.
+
+2. Asset taggers can modify asset tags: Annette Frietas should have full access to create HHD records AND edit the Asset tag field because she's a member of the HHD Asset Taggers group.
+
+Your task is to impersonate both users, test the Asset tag field accessibility on the HHD form, verify the security controls work as designed, then properly end impersonation and de-elevate your security_admin role.
+
+Task Objectives
+
+This task requires you to impersonate another user. You must end the impersonation before selecting Show hint or Validate task.
+
+1. With the security_admin role: 
+- Impersonate Beth Anglin.
+- Navigate to the HHD application and verify the Asset tag field is read-only (greyed out) on a new record.
+
+2. Impersonate Annette Frietas:
+- Navigate to the HHD application and verify Annette has access to all the modules and can write on the Asset tag field.
+
+3. Remove the security_admin role from the logged in user.
+
+
