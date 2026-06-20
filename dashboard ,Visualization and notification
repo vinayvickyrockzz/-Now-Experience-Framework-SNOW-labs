@@ -1,0 +1,130 @@
+Module 6 Configure  a dashboard ,Visualization and notification 
+6.1 create a dashboard
+Lesson
+Dashboards in ServiceNow provide centralized, visual representations of key data and metrics. The Platform Analytics library offers two types of dashboard editors: the inline editor for straightforward dashboard creation and the technical editor (via UI Builder) for advanced capabilities. This task focuses on creating a dashboard using the inline editor to monitor service offerings effectively.
+
+Scenario
+The Infinity Product Management team has requested a dashboard to monitor their service offerings. Your objective is to create a new dashboard that will serve as a centralized location for tracking key product metrics and service performance.
+
+Task Objectives
+1.  Navigate to Dashboards in your instance. 
+
+2. Create a new dashboard using the in-line editor and name the dashboard: Infinity HHD Product Monitoring. 
+
+To begin, navigate to All > Self-Service > Dashboards. 
+
+6.2 Create a Visualization
+Lesson
+In ServiceNow, data visualizations transform raw data into meaningful charts and graphs that help teams quickly understand trends and patterns. This exercise focuses on creating a donut chart with dynamic grouping capabilities, allowing users to view incident data from multiple perspectives (Pilot status, Category, and Subcategory). You'll create test data, build a visualization from a list, and add it to an existing dashboard for easy access.
+
+Scenario
+The HHD (Help Desk) team needs better visibility into their incident data. Specifically, they want to distinguish between Incidents and Inquiries, identify Pilot-related issues, and track Firmware problems. Your task is to create a visualization that allows the team to switch between these different groupings on demand, then add it to their monitoring dashboard.
+
+Task Objectives
+
+1. Create two test incident records with varying categories:
+
+Incident #1
+- Caller: (Select any)
+- Category: Inquiry / Help
+- Subcategory: --None--
+- Service: Training
+- Service Offering: Infinity (HHD)
+- Pilot: Selected (true)
+- Short description: Test for Pilot Inquiry.
+- Impact: High
+- Urgency: High
+
+Incident #2
+- Caller: (Select any)
+- Category: Hardware
+- Subcategory: Firmware
+- Service: Training
+- Service Offering: Infinity (HHD)
+- Pilot: Unchecked (false)
+- Short description: Test for Firmware Incident
+- Impact: High
+- Urgency: High
+
+2. Return to the HHD Incidents and Inquiries table and locate the two records you created. Then, right-click on the Pilot column and generate a pie chart visualization. After this is generated, change it to a donut chart and save.
+
+4. Save the visualization with the name "HHD Incidents – by Pilot, Inquiry, Firmware".
+
+5. Navigate back to the HHD Product Monitoring dashboard you created in the previous task. Add the donut chart visualization as an element on the dashboard, then save.
+
+To begin, navigate to All > HHD > Incidents and Inquiries.
+6.3 Share the Dashboard
+Lesson
+Sharing dashboards in ServiceNow allows you to distribute analytics and insights with specific users, groups, or roles across your organization.
+
+Platform Analytics provides flexible sharing options that enable collaboration while maintaining proper access controls. When you share a dashboard, recipients can view the visualizations, interact with filters, and gain insights—all without needing to create their own dashboards.Sharing is essential for creating transparency across teams, enabling data-driven decision-making, and ensuring stakeholders have access to the metrics that matter most to their work.
+
+Pasted image.png
+
+Scenario
+As a ServiceNow administrator, you need to collaborate with other teams by sharing dashboards. The Training Technology Support team has requested access to edit a Platform Analytics dashboard so they can customize views for their department. Your task is to grant them the appropriate access while ensuring they can see all visualizations on the dashboard.
+
+Task Objectives
+
+1. On your Infinity HHD Product Monitoring dashboard, navigate to the dashbaord sharing options.
+
+2. Search for the Training Technology Support group. 
+
+3. To enable collaborative dashboard management, add editor permissions to the Training Technology Support Group and Confirm.
+
+To begin, navigate to your Infinity HHD Product Monitoring dashboard (All > Self-Service > Dashboards).
+6.4 Create a Notification
+Lesson
+Notifications in ServiceNow are automated email alerts that keep stakeholders informed about important events and changes in the platform. As a System Administrator, you'll frequently configure notifications to ensure the right people receive timely information about critical situations. Notifications consist of three key components: When to send (trigger conditions), Who receives it (users and groups), and What it contains (subject and message content). Understanding how to leverage field references and dynamic variables makes notifications both powerful and maintainable.
+
+Scenario
+The IT Product Owner for the Infinity (HHD) service has requested that specific stakeholders be notified whenever a critical (Priority 1) incident is created or updated for the Infinity (HHD) service offering. Your task is to create an email notification that will automatically alert the Training Service owner, the Infinity (HHD) service offering owner, and all members of the Training Technology Support group. The notification must include dynamic content that makes it easy for recipients to take immediate action.
+
+Task Objectives
+1. Create a new notification named "P1 Infinity (HHD) Incident" on the Incident table.
+
+2. Configure when to send the notification:
+- When P1 incidents are inserted or updated. Note: select "Insert" and "Update" checkboxes, in addition to "Send when | record inserted or updated"
+- Conditions:
+     - Active is true AND
+     - Priority is 1-Critical AND
+     - Service offering is Infinity (HHD)
+
+
+3. Specify who will receive the notification:
+- Users/Groups in fields: Service.Ownedby and Service offering.Owned by (dot-walking is required). Note: When dot-walking in this task, scroll up to the top of the "Available" list collector, and select "Incident fields" to restore the original parent fields.
+- Groups: Training Technology Support
+
+4. Specify what it will contain: 
+- Subject: IMPORTANT! P1 Infinity (HHD) Incident ${number}
+- Body: Critical Incident ${URI_REF} has been created for Infinity (HHD) service offering.
+
+To begin, navigate to All > System Notification > Email > Notifications.
+6.5 Test and verify Notification Settings
+Lesson
+Creating a notification is only half the battle—you must also test it to ensure it functions correctly. Testing notifications involves creating a record that meets the trigger conditions, then verifying the notification was generated and formatted properly. Since email may not be enabled in development instances, ServiceNow provides the Outbox in System Mailboxes where administrators can preview and verify all outbound notifications. This testing process is critical for quality assurance before deploying notifications to production environments.
+
+Scenario
+You've just created the "P1 Infinity (HHD) Incident" notification, and now you need to test it to ensure it triggers correctly. To do this, you'll impersonate Beth Anglin (a user in your instance) and create a Priority 1 incident for the Infinity (HHD) service offering that meets all the notification trigger conditions. Then, you'll verify that the notification was generated in the Outbox and review its content to confirm the dynamic variables rendered correctly and the proper recipients were identified.
+
+Task Objectives
+1. Impersonate Beth Anglin to create a test incident.
+
+2. Create a Priority 1 incident that meets the notification trigger conditions:
+- Caller: Buster Wubbel
+- Service offering: Infinity (HHD)
+- Impact: 1 - High
+- Urgency: 1 - High
+- Priority: 1 – Critical (auto-fills)
+- Short description: Test of P1 Incident for Infinity HHD
+
+3. End the impersonation and return to your System Administrator session
+
+4. Navigate to the Outbox to locate the triggered notification.
+
+5. Preview the email to verify formatting and dynamic content. Review notification details including the recipient list.
+
+To begin, navigate to the User menu > Impersonate user. 
+
+
+
