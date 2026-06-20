@@ -16,3 +16,469 @@ Task Objectives
 3. Navigate to Megan Burke's user record and configure the User form to include the Company field.
 
 4. Set Cloud Dimensions as the Company on Megan's user record.
+
+5.2 Add The Hr Knowledge Manager
+Lesson
+Groups are the foundation of scalable, maintainable access control in ServiceNow. By understanding how to create and manage groups effectively, administrators can ensure that users have the access they need to do their jobs while maintaining strong security practices and reducing administrative burden.
+
+Scenario
+As a System Administrator at your organization, you have been asked to set up proper access controls for the Human Resources department's knowledge management team. HR needs to manage their department's knowledge base articles, but you want to ensure only authorized personnel have these permissions. Rather than assigning permissions to each user individually, you will create a group that can be managed efficiently as team members change over time.
+
+Task Objectives
+1. Create a new user group called HR Knowledge Managers with the description: This group contains individuals with the Knowledge Manager role (knowledge_manager). 
+
+2. Assign Gracie Ehn as the Manager.
+
+3. Add appropriate team members to the group: Gracie Ehn and Jasmin Gum.
+
+To begin, navigate to All > User Administration > Groups.
+5.3 Assign  Roles to Knowledge Group
+n ServiceNow, role assignment to groups is a fundamental administrative practice that streamlines access management. Instead of assigning roles to individual users, administrators can assign roles to groups, allowing all group members to automatically inherit those permissions. This approach is efficient and scalable—when users join or leave a group, their role assignments update automatically without manual intervention. This lesson focuses on assigning multiple roles to a specific group to grant the appropriate access levels for their responsibilities.
+
+Scenario
+You are a ServiceNow administrator supporting the Human Resources department. The HR Knowledge Managers group needs access to create, review, and approve knowledge articles in the ServiceNow knowledge base. Currently, the group exists but lacks the necessary role assignments. Your task is to assign the appropriate roles to ensure all members of the HR Knowledge Managers group can perform their job functions
+
+Task Objectives
+1. Navigate to the HR Knowledge Managers group.
+
+2. Assign the knowledge_manager role to the group.
+
+3. Assign the approver_user role to the group.
+
+To begin, navigate to All > User Administration > Groups. 
+5.4 Modify The HR Knowledge Base
+Lesson
+Knowledge bases in ServiceNow organize content into product or service categories while controlling user access through granular permissions. As a knowledge base administrator, you will manage publication workflows, define contributor access, and ensure proper oversight of knowledge content. This task focuses on configuring the Human Resources General Knowledge knowledge base with approval workflows and establishing contributor criteria for the HR Knowledge Managers group.
+
+Scenario
+Cloud Dimensions is implementing structured knowledge management for their HR department. The HR team needs a controlled environment where designated knowledge managers can create and modify articles, but all content must be reviewed before publication. Your role is to configure the Human Resources General Knowledge knowledge base with appropriate ownership, approval workflows, and contributor access to ensure quality control while enabling the HR Knowledge Managers group to maintain their content effectively.
+
+Task Objectives
+1. Assign ownership of the Human Resources General Knowledge knowledge base to Gracie Ehn.
+
+2. Configure approval workflows for publishing and retiring knowledge articles:
+- Publish workflow = Knowledge - Approval Publish
+- Retire workflow = Knowledge - Approval Retire
+
+3. Define contributor criteria to grant the HR Knowledge Managers group access to create and modify articles:
+- Ensure HR Knowledge Managers can contribute. 
+5.5 Upload a New Article
+Lesson
+Knowledge contributors play a vital role in sharing organizational information through ServiceNow's knowledge management system. In this scenario, you will learn how to import and publish knowledge articles while understanding the contributor workflow and article lifecycle. You will work with knowledge bases, handle document imports, and navigate the approval process—all essential skills for maintaining an effective knowledge management system.
+
+Scenario
+Jasmin Gum, an HR Knowledge Manager, needs to make important open enrollment information available to all employees. As Jasmin, your task is to import an HR policy document and prepare it for publication in the Human Resources General Knowledge knowledge base.
+
+Task Objectives
+
+This task requires you to impersonate another user. You must end the impersonation before selecting Show hint or Validate task.
+
+
+1. Impersonate Jasmin Gum to work with appropriate permissions.
+
+2. Create a new article by importing the HR document (Infinity_Open_Enrollment.docx) into the Human Resources General Knowledge base.
+
+3. Once the article import/upload is complete, select the new KB article number, edit it, and verify it belongs to the Human Resources General Knowledge base before Publishing the article.
+
+4. Verify the article has entered the review state due to approval workflow.
+
+IMPORTANT: This task requires the document: Infinity_Open_Enrollment.docx
+
+To begin, impersonate Jasmin, then navigate to All > Knowledge > Articles > Import Articles.
+
+5.6 Approve a KB article
+Lesson
+Knowledge management is essential for maintaining accurate, accessible information across your organization. The knowledge article lifecycle includes creation, review, approval, and publication stages. During the review stage, articles require approval from designated users before becoming visible to the broader organization. Understanding this approval workflow ensures timely publication of critical information while maintaining quality standards.
+
+Scenario
+A new knowledge article has been created under the Human Resources General Knowledge knowledge base. The article needs to be reviewed and approved before employees can access this important information.
+Gracie Ehn, the Knowledge Base Owner, has been assigned as the approver. Your task is to complete the approval process so the article becomes available to all employees.
+
+Task Objectives
+
+This task requires you to impersonate another user. You must end the impersonation before selecting Show hint or Validate task.
+
+
+1. Impersonate Gracie Ehn to access her approval queue.
+
+2. Review and approve the pending knowledge article.
+
+3. Verify the article is published and visible in the Human Resources General Knowledge knowledge base.
+
+4. End the impersonation session.
+
+To begin impersonate Gracie, navigate to All > Service Desk > My Approvals.
+5.7 Apply User Criteria
+Lesson
+User Criteria in ServiceNow Knowledge Management is a powerful feature that controls access to knowledge bases and articles. It allows administrators to define conditions that determine which users can create, read, write, and retire knowledge articles. By applying user criteria at the knowledge base level (and optionally at the article level), organizations can ensure that sensitive information remains accessible only to authorized personnel while enabling appropriate contributors to maintain and expand the knowledge repository.
+
+Scenario
+The HR department has recently established a Human Resources General Knowledge knowledge base containing internal policies, benefits information, and employee resources. Leadership has expressed concern that this knowledge base is currently visible to everyone, including external contractors and partners who occasionally access the ServiceNow platform.
+
+Your task is to implement user criteria that restricts access to the HR knowledge base, ensuring that only Cloud Dimensions employees can read and access articles within it. This will protect confidential HR information while maintaining accessibility for all internal staff members.
+
+Task Objectives
+1. Create a new user criteria record named "Cloud Dimensions Employees" that identifies users by company affiliation.
+
+2. Configure the user criteria to match users from the Cloud Dimensions company.
+
+3. Apply the user criteria to the "Human Resources General Knowledge" knowledge base to control read access.
+
+4. Verify that the user criteria has been properly applied to restrict access appropriately.
+
+To begin, navigate to All > Knowledge > Administration > User Criteria.
+
+5.8 Assign  Managers and editors
+Lesson
+Service Catalog management in ServiceNow requires proper role assignments and catalog-level permissions to maintain security and administrative control. The Service Catalog is a critical self-service tool that allows users to request services, and proper administration ensures catalog items remain organized, accessible, and secure.
+
+Effective catalog administration involves two key permission layers: role-based access (who can perform administrative tasks) and catalog-level assignments (who can edit specific catalogs). Understanding both layers is essential for maintaining catalog integrity while enabling the right people to manage catalog content.
+
+Scenario
+Your organization is expanding its Service Catalog administration team to better manage the growing number of catalog items and service offerings. Currently, only System Administrators can edit the Service Catalog, creating a bottleneck for routine catalog maintenance tasks.
+
+The IT Director has identified Bud Richman as the new Catalog Administrator who will manage day-to-day catalog content, including creating and modifying catalog items, organizing categories, and ensuring service descriptions are accurate and up-to-date.
+
+Your task is to create a dedicated "Catalog Administrators" group with the appropriate role, add Bud Richman to this group, and grant him editor access to the Service Catalog. This will enable Bud to perform catalog administration independently while maintaining proper access controls.
+
+Task Objectives
+1. Create a new group named Catalog Administrators.
+
+2. Assign the catalog_admin role to the Catalog Administrators group.
+
+3. Add Bud Richman as a member of the Catalog Administrators group.
+
+4. Navigate to the Service Catalog catalog definition (Catalog Definitions > Maintain catalogs module).
+
+5. Set the Manager field to System Administrator.
+
+6. Add Bud Richman to the Editors field for the Service Catalog.
+
+To begin, navigate to All > User Administration > Groups.
+5.9 Create a New Catalog Item
+Lesson
+Service Catalog items are the foundation of self-service in ServiceNow, enabling users to request products, services, and resources through an intuitive interface. Creating well-designed catalog items improves user experience, standardizes request processes, and automates fulfillment workflows.
+
+The Catalog Builder provides a guided, step-by-step interface for creating catalog items without requiring technical expertise. It walks you through essential configurations including basic information, visual design, categorization, questions (variables), and fulfillment automation—all in a user-friendly workflow.
+
+Scenario
+The company is launching a new corporate device program featuring the Infinity Holographic Handheld Device (HHD)—an innovative device that projects immersive holographic environments without requiring VR glasses. 
+
+The IT Asset Management team has approved two configurations: 256GB and 512GB models, available in Crimson or Silver colors. As the newly designated Catalog Administrator, Bud Richman needs to create a Service Catalog item that allows employees to request the Infinity HHD through self-service. 
+
+The catalog item must collect essential information including the employee's manager (for approval), desired memory configuration, and color preference.
+
+Your task is to build this catalog item using the Catalog Builder, ensuring it appears in the Hardware category with clear questions, visual branding, and proper fulfillment configuration. 
+
+This will enable employees to easily request the device while providing the Asset Management team with all necessary information for provisioning.
+
+Task Objectives
+
+This task requires you to impersonate another user. You must end the impersonation before selecting Show hint or Validate task.
+
+1. Impersonate Bud Richman to perform catalog administration tasks.
+
+2. Launch Catalog Builder and create a new catalog item.
+
+3. Select the Standard items in Service Catalog template to begin.
+Configure Basic Info:
+- Item Name: Infinity HHD
+- Short description: VR, but without the glasses
+- Upload image: Infinity HHD.png
+- Description: The Infinity Holographic Handheld Device (HHD) is capable of projecting immersive environments around you. What are you waiting for? Get the Infinity HHD!
+
+4. Set Location: Configure the item to appear only in the Hardware category.
+
+5. Create first question (variable):
+- Question Type: Choice (Dropdown with fixed values)
+- Question label: How much memory do you want in your Infinity HHD?
+- Name: memory
+- Mandatory: Selected
+- Choices: 256 GB, 512 GB
+
+6. Create second question (variable):
+- Question Type: Choice (Dropdown with fixed values)
+- Question label: What color Infinity HHD would you like?
+- Name: color
+- Mandatory: Selected
+- Choices: Crimson, Silver
+- Default value: Crimson
+
+7. Configure Fulfillment: Select "Service Catalog item request" flow as the fulfillment method.
+
+8. Preview the catalog item to verify appearance and functionality
+Submit the catalog item to publish it to the Service Catalog.
+
+IMPORTANT NOTE – This task requires the file: CloudDimensions-Infinity-Logo.png
+
+To begin, impersonate Bud Richman. Then, navigate to All > Service Catalog > Catalog Builder.
+5.9.1  update the catalog item cost
+Lesson
+Pricing in the ServiceNow Service Catalog allows organizations to track costs, enable chargeback models, and provide cost transparency to users before they submit requests. Catalog item pricing can include a base price plus additional costs for specific configurations or options, creating flexible pricing models that reflect real-world product variations.
+
+Understanding how to configure pricing on catalog items and their variables ensures users see accurate cost information during the ordering process, supports financial planning, and enables IT Asset Management teams to track total cost of ownership for devices and services.
+
+Scenario
+The Asset Management team has finalized pricing for the Infinity Holographic Handheld Device (HHD) catalog item. The finance department has approved the following pricing structure:
+
+Base model (256GB): $359.00
+Memory upgrade to 512GB: Additional $100.00 (total: $459.00)
+Color selection (Crimson or Silver): No additional cost
+
+Before launching the catalog item to employees, you need to configure these prices so users can see accurate costs when ordering. The pricing should update dynamically—when users select the 512GB memory option, the total price should automatically increase by $100.
+
+As Catalog Administrator Bud Richman, your task is to add the base price to the Infinity HHD catalog item, configure the additional cost for the 512GB memory option, activate the item, and test the pricing display using the "Try It" feature to ensure calculations work correctly.
+
+Task Objectives
+
+This task requires you to impersonate another user. You must end the impersonation before selecting Show hint or Validate task.
+
+
+1. Verify you are impersonating Bud Richman.
+
+2. Navigate to Maintain Items and open the Infinity HHD catalog item.
+
+3. Configure base pricing:
+- Set Price field to 359.00
+
+4. Add variable pricing for memory upgrade:
+- Open the memory variable ("How much memory do you want in your Infinity HHD?").
+- In the Question Choices section, open the 512 GB choice.
+- Set Price field to 100.
+
+
+5. Return to the Infinity HHD catalog item record and ensure the Active checkbox is selected.
+
+6. Verify the price dynamically updates to reflect the additional cost.
+
+7. End the impersonation.
+
+To begin, navigate to All > Service Catalog > Catalog Definitions > Maintain Items.
+5.9.2 create a workflow studio flow
+Lesson
+Workflow Studio is ServiceNow's primary interface for creating, managing, and monitoring automated workflows, processes, and integrations. It provides a centralized workspace where administrators and developers can build automation logic without writing code, while also offering visibility into how those automations are performing in real-time.
+
+Scenario
+As a ServiceNow administrator at Cloud Dimensions, you've been tasked with automating the item request process for the IT department. Currently, employees submit item requests through email, causing delays and tracking issues. Your manager has asked you to create a new workflow using Workflow Studio that will streamline this process and ensure proper routing and approvals.
+
+Task Objectives
+
+1. Navigate to Workflow Studio within the ServiceNow Platform.
+2. Create a new flow from scratch with the following: 
+
+- Flow name: Infinity Item Request
+- Description: Use any description of your choice
+- Application: Global
+- Run as: System User
+
+3. Successfully launch the flow designer interface to begin building automation logic.
+
+To begin, navigate to All > Process Automation > Workflow Studio.
+5.9.3 Define A Trigger
+Lesson
+Triggers are the starting point for any workflow—they determine when and how a flow begins execution. Triggers instantiate the flow based on specific conditions or events occurring within ServiceNow.
+
+Types of Triggers
+- Record-Based Triggers: Activate when a record is created, updated, or deleted. The triggering record's data can be referenced throughout the flow.
+
+- Date-Based Triggers: Run flows on a schedule—daily, weekly, monthly, or at custom intervals. Perfect for routine maintenance or scheduled tasks.
+
+- Application-Based Triggers: Become available when specific application spokes are activated.
+
+Scenario
+Continuing your work, you've created the "Infinity Item Request" flow in Workflow Studio. Now you need to define what will actually start this workflow. 
+
+The IT department wants the flow to automatically begin whenever an employee submits a new item request through the Service Catalog. Your task is to configure the appropriate trigger so the workflow activates at the right moment—when a Service Catalog request is created.
+
+Task Objectives
+
+1. Access the Trigger configuration section within Workflow Studio. 
+
+2. Select and configure an application-based trigger
+
+3. Associate the Service Catalog application with your flow
+
+4. Select Done to save the trigger. Then, select the More actions menu in Workflow Studio and select Force Save.
+
+To begin, navigate to All > Process Automation > Workflow Studio > Infinity Item Request flow.
+5.9.4 Add the First Action
+Lesson
+Actions are the building blocks of workflow automation—they define what the flow actually does once it's triggered. In Workflow Studio, the Actions section displays the most recent and most popular actions used across all Workflow Studio users in the last 7 days, making it easy to find commonly used operations.
+
+ServiceNow provides several core actions that handle common automation tasks:
+- Ask for Approval: Create approval requests on any record with configurable rules for approval, rejection, or cancellation, plus due dates.
+
+- Create Record: Generate new records on any table with customizable field values.
+
+- Delete Record: Remove records from any table.
+
+- Update Record: Modify existing records by changing field values.
+These are just a few examples of the types of actions. 
+
+Beyond core actions, you can access application-specific actions by activating the associated spoke for that application, expanding your automation possibilities.
+
+Scenario
+Your "Infinity Item Request" flow at Infinity Corporation now has a Service Catalog trigger configured. The next step is to add automation logic that actually performs work when the flow runs. The IT department needs requested items to automatically transition to a "Pending" state as soon as they're submitted, ensuring proper tracking and signaling that the request is awaiting processing. Your task is to add an action that updates the requested item record's state field.
+
+Task Objectives
+
+1. Access and navigate the Actions section in the Workflow Studio flow.
+
+2. Select and configure an Update Record action from ServiceNow Core.
+
+3. Use the Data panel to reference trigger data within your action:
+- Move the Requested Item Record pill to the Record field.
+- Configure field values to automatically update the requested item's state to: State | Pending. 
+
+To begin, navigate to All > Process Automation > Workflow Studio > Infinity Item Request flow.
+
+Note: Select the More actions menu in Workflow Studio and select Force Save once you are done editing each action in the flow.
+5.9.5 Create a Catalog Task Action 
+Lesson
+Actions are the building blocks of workflow automation—they define what the flow actually does once it's triggered. In Workflow Studio, the Actions section displays the most recent and most popular actions used across all Workflow Studio users in the last 7 days, making it easy to find commonly used operations.
+
+Beyond core actions, you can access application-specific actions by activating the associated spoke for that application, expanding your automation possibilities.
+
+Scenario
+Your "Infinity Item Request" flow now successfully updates the requested item to a Pending state. Next, the IT department needs the flow to automatically create a catalog task that assigns the delivery work to the Service Desk team. 
+
+This task will track the physical delivery of the requested item to the employee. Your job is to add a Create Catalog Task action that generates an assignment for the Service Desk with appropriate details and pauses the flow until the task is completed.
+
+Task Objectives
+
+1. Add a Create Catalog Task action to your existing flow.
+
+2. Reference data from previous actions using the Data panel:
+- Move the Requested Item Record pill to the Requested Item [Requested Item] field. 
+
+3. Configure task details including short description, assignment group, and state:
+-  Short Description: Deliver Infinity.
+- Add the following Field values:
+    -- Assignment Group | Service Desk
+    -- State | Open
+
+To begin, navigate to All > Process Automation > Workflow Studio > Infinity Item Request flow.
+
+Note: Select the More actions menu in Workflow Studio and select Force Save once you are done editing each action in the flow.
+5.9.6 Send a Email to the Requester
+Lesson
+Actions are the building blocks of workflow automation—they define what the flow actually does once it's triggered. In Workflow Studio, the Actions section displays the most recent and most popular actions used across all Workflow Studio users in the last 7 days, making it easy to find commonly used operations.
+
+Beyond core actions, you can access application-specific actions by activating the associated spoke for that application, expanding your automation possibilities.
+
+Scenario
+Your "Infinity Item Request" flow at Infinity Corporation now updates the requested item status and creates a delivery task for the Service Desk. The stakeholders want to enhance the user experience by automatically sending an email confirmation to the requester once their item has been delivered. 
+
+The email should also CC the requester's manager and include a personalized greeting with the requester's first name. Your task is to configure a Send Email action using dot-walking to access related record data.
+
+Task Objectives
+
+1. Add a Send Email action to your flow.
+
+2. Use dot-walking to navigate between related records and fields
+
+3. Configure email recipients (To and CC):
+- To = Trigger-Service Catalog > Requested Item Record > Requested Item > Requested for > Email.
+
+- CC = Trigger - Service Catalog > Requested Item Record > Requested for > Manager > Email. 
+
+4. Personalize email content by inserting this text into the  subject and message body:
+-  Subject: Your Infinity HHD is on its way!
+- Body: Greetings [First name], your requested item has been shipped and is expected to arrive soon.
+
+Important Note: On the Body, to personalize the message, dot-walk to populate the recipient's First Name.
+
+To begin, navigate to All > Process Automation > Workflow Studio > Infinity Item Request flow.
+
+Note: Select the More actions menu in Workflow Studio and select Force Save once you are done editing each action in the flow.
+5.9.7 Add the Second Action
+Lesson
+Actions are the building blocks of workflow automation—they define what the flow actually does once it's triggered. In Workflow Studio, the Actions section displays the most recent and most popular actions used across all Workflow Studio users in the last 7 days, making it easy to find commonly used operations.
+
+Beyond core actions, you can access application-specific actions by activating the associated spoke for that application, expanding your automation possibilities.
+
+Scenario
+Your "Infinity Item Request" flow is nearly complete. The delivery task has been finished and the confirmation email has been sent to the requester. 
+
+Now you need to close the loop by updating the requested item's state to reflect that the entire process is complete. Following the Request Management hierarchy (Request → Request Item → Catalog Task), you'll update the Request Item record to "Closed Complete," signaling that no further action is needed and providing proper closure for tracking and reporting purposes.
+
+Task Objectives
+
+1. Add a second Update Record action to your flow.
+
+2. Reference data from actions using the Data panel:
+- Move the (1–Update Record) Requested Item Record pill to the Record field. 
+
+3. Add the following Field values:
+    -- State | Closed Complete
+
+To begin, navigate to All > Process Automation > Workflow Studio > Infinity Item Request flow.
+
+Note: Select the More actions menu in Workflow Studio and select Force Save once you are done editing each action in the flow.
+5.9.8 Add the Last Action for the flow
+Lesson
+Actions are the building blocks of workflow automation—they define what the flow actually does once it's triggered. In Workflow Studio, the Actions section displays the most recent and most popular actions used across all Workflow Studio users in the last 7 days, making it easy to find commonly used operations.
+
+Beyond core actions, you can access application-specific actions by activating the associated spoke for that application, expanding your automation possibilities.
+
+Scenario
+Your "Infinity Item Request" flow has successfully updated the Request Item to Closed Complete, but there's one more step needed. In ServiceNow's Request Management hierarchy (Request → Request Item → Catalog Task), the parent Request record also needs to be closed. Currently, only the Request Item is marked complete, but the overall Request that contains it remains open. Your task is to navigate to the parent Request record and update its state to Closed Complete, ensuring the entire request lifecycle is properly closed at all levels.
+
+Task Objectives
+
+1. Add a third Update Record action to close the parent Request.
+
+2. Reference data from actions using the Data panel:
+- Move the (1–Update Record) Requested Item Record > Request pill to the Record field. 
+
+3. Add the following Field values:
+    -- State | Closed Complete
+
+To begin, navigate to All > Process Automation > Workflow Studio > Infinity Item Request flow.
+
+Note: Select the More actions menu in Workflow Studio and select Force Save once you are done editing each action in the flow
+5.9.9 Activate the flow
+Lesson
+Workflow Studio provides several menu options for managing your flows:
+
+- Test: Test the flow to ensure it runs as expected before production use.
+
+- Debug: Set breakpoints to step through execution and review configuration and runtime values.
+
+- Activate/Deactivate: Control flow execution—activate to start running, deactivate to stop without deleting.
+
+- Save: Save your changes to preserve your work.
+More actions: Access additional options including Properties, Executions, and Flow Stages.
+
+Important Note on Flow Changes
+If you modify a flow after activating it, you must deactivate and then re-activate the flow for changes to take effect.
+
+Scenario
+Your "Infinity Item Request" flow is now complete with all five actions configured. However, the flow is still in draft mode and not yet executing. To make this automation functional, you need to activate the flow in Workflow Studio and then associate it with the actual Infinity HHD catalog item in the Service Catalog. This final step connects your automation to the real-world item that employees will request, ensuring your workflow runs automatically whenever someone submits a request for the Infinity HHD device.7
+
+Task Objectives
+
+1. Activate the flow in Workflow Studio to make it executable.
+
+2. Navigate to All > Service Catalog > Catalog Definitions > Maintain Items > Infinity HHD item record: 
+
+- Update the Flow from Service Catalog Item Request to Infinity Item Request.
+
+3. Close the Workflow Studio tab and return to your instance homepage to validate the task. 
+
+To begin, navigate to All > Process Automation > Workflow Studio > Infinity Item Request flow.
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+ 
+
