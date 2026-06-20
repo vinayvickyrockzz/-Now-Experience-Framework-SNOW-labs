@@ -1,0 +1,35 @@
+MOdule 8 Monitor and Secure an Instance
+8.1 Optimize Platform Configuration
+Lesson
+Update sets are a powerful mechanism in ServiceNow for migrating configuration changes between instances (such as from development to production). The update set migration process follows three essential steps: Retrieve, Preview, and Commit.
+
+Retrieve: Update sets marked as "Complete" are transferred from the source instance (sub-production) to the target instance (production). When using remote instances, the platform can automatically retrieve completed update sets.
+
+Preview: This step compares the retrieved update set with existing updates on the local instance to detect potential conflicts or incompatibilities before applying changes. Previewing helps ensure a smooth migration by identifying issues in advance.
+
+Commit: Once previewed and verified, committing the update set applies all changes to the target instance and creates a local copy containing an update record for every change made.
+
+Scenario
+You have received an XML file named "prb_manufacturer_update_set_25d…..xml" containing an update set called "Add Manufacturer to PRB Form." This update set will add a Manufacturer field to the Problem form below the Assigned to field. Your task is to import this XML file, preview the update set to check for conflicts, and commit it to apply the changes to your instance.
+
+Import the update set XML file (prb_manufacturer_update_set_25d…..xml), preview it to verify there are no conflicts, commit it to apply the changes, and verify that the Manufacturer field now appears on the Problem form below the Assigned to field.
+
+Task Objectives
+1. Verify current Problem form state and confirm the Manufacturer field is NOT displayed on the form below the Assigned to field.
+
+2. Import the update set:
+-  Use "Import Update Set from XML" link
+- Upload the prb_manufacturer_update_set_25d...xml file.
+
+3. Verify import success:
+- Locate and open the "Add Manufacturer to PRB Form" update set
+- Confirm State is "Loaded"
+- Review the Customer Updates related list
+
+4. Preview the update set.
+
+5. Commit the update set.
+
+6. Verify deployment and confirm Manufacturer field now appears on the form.
+
+To begin, navigate to All > System Update Sets > Retrieved Update Sets. Scroll past the list to Related Links and select 'Import Update Set from XML.' Upload the "prb_manufacturer_update_set_25d...xml file."
