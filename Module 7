@@ -1,0 +1,175 @@
+Module 7 Apply Business rules and migrate customizations
+7.1 Prepare Data
+Lesson
+This task focuses on creating new records in ServiceNow tables and establishing relationships between them. You'll learn how to navigate to different tables, create records with specific field values, and link related records together. These fundamental skills are essential for maintaining accurate data relationships in ServiceNow, which supports effective service delivery and reporting.
+
+Scenario
+Your organization has partnered with a new manufacturer, Infinity Products, Inc., to support hardware services. Before your service desk can properly escalate incidents to this manufacturer, you need to set up the supporting data structure. This involves creating a contact person in the system, establishing the manufacturer record, and linking it to the appropriate service offering. Without these relationships in place, your agents won't be able to track manufacturer interactions effectively.
+
+Task Objectives
+1. Create a new User record with the following values:
+- User ID: Test.Contact
+- First Name: Test
+- Last Name: Contact
+- Email: test.contact@test.com
+
+   
+2. Create a Manufacturer record with the following values:
+- Name: Infinity Products, Inc. 
+- Contact: Test Contact
+
+3. Search for and select the Infinity (HHD) Service Offering record, then update the Manufacturer field to be Infinity Products, Inc.
+7.2 Create a UI Policy
+Lesson
+This task focuses on creating UI policies to control field visibility and behavior on ServiceNow forms. UI policies enable dynamic form behavior based on conditions, improving user experience by showing or hiding fields contextually. You'll demonstrate how to define conditions, configure policy settings, and ensure fields appear only when relevant to the user's workflow.
+
+Scenario
+Your service desk team has reported confusion when handling incidents for Infinity (HHD) service offerings. Agents are unsure when to use the manufacturer escalation fields you recently added. To streamline the process, you need to create a UI policy that executes when an Incident has a Priority of 1 - Critical AND it's related to the Infinity (HHD) Service offering. This will reduce clutter on the form and guide agents to escalate only when appropriate. You will configure the UI Policy actions in the next lesson.
+
+Task Objectives
+1. Create a new UI policy by navigating to All > Incident > Create New, then right-clicking the form header (or by using the Additional actions menu) and selecting Configure > UI Policies. On the UI Policies list, select New.
+
+2. This new UI Policy should execute when the Priority is 1 - Critical AND the Service Offering is Infinity (HHD) and contain the following details: 
+
+- Short description: Display Escalation for Infinity (HHD) service offerings when Priority = 1 - Critical
+
+3. Configure the UI policy execution settings by selecting the On load and Reverse if false options.
+
+
+To begin, navigate to All > Incident > Create New.
+7.3 create a UI Policy Actions
+Lesson
+This task focuses on creating UI Policy Actions that control field behavior on ServiceNow forms. After defining when a UI policy should apply through conditions, UI Policy Actions specify what actually happens to fields on the form—making them visible, hidden, mandatory, or read-only. These actions work together with UI policy conditions to create dynamic, context-aware forms that guide users through the right workflow at the right time.
+
+Scenario
+You've successfully created a UI policy that identifies when the Manufacturer escalation field is needed (Priority 1 - Critical incidents for Infinity (HHD) service offerings). Now you need to complete the configuration by defining what actually happens when these conditions are met. Specifically, you need to make both the Escalate to manufacturer and Manufacturer contact fields visible to agents. Without these UI Policy Actions, your policy conditions would evaluate but nothing would change on the form, leaving agents without the escalation tools they need.
+
+Task Objectives
+1. Add two UI Policy Actions records to the UI Policy created in the previous task. 
+
+2. Ensure that when the Priority is set to 1 - Critical, for Infinity (HHD) Service offerings the following occurs:
+  - The Escalate to manufacturer field becomes visible.
+  - The Manufacturer contact field becomes visible.
+
+To begin, navigate to All > System UI > UI Policies > select the UI policy that was created in the previous lesson (Priority = 1-Critical, Service Offering = Infinity (HHD). 
+7.4 create a Business Rule
+Lesson
+This task focuses on creating Business Rules. Business rules are server-side scripts that execute automatically when specific conditions are met during database operations. They run when records are displayed, inserted, updated, deleted, or queried. Business rules help automate processes without requiring manual intervention.
+
+Business rules execute based on timing (before, after, async, or display) and record operations (insert, update, query, delete). They can perform various actions including setting field values, displaying messages to users, and preventing certain operations. Unlike client scripts that only run when forms are edited, business rules apply consistently across forms, lists, and web services.
+
+Scenario
+You are a ServiceNow administrator at a company that manufactures hardware devices. Your IT service desk needs to improve how critical incidents involving the Infinity (HHD) product are handled. Management has requested automation to help agents remember escalation procedures and to automatically populate manufacturer contact information for critical incidents.
+
+Task Objectives
+In this simulator task, you will create two Business Rules to automate incident management processes:
+
+1. Create a Business Rule (by right-clicking the form header > Configure > Business Rules), then select New. 
+
+Note: Specific names for these business rules are not requried, however, it is good Platform hygiene to be specific in naming the business rule. For this task, you may use the names, "Escalate to manufacturer reminder" and "Populate manufacturer contact name"
+
+- It should display a reminder message when the Escalate to manufacturer field is true (checked) and the Service offering is Infinity (HHD).  
+
+- The reminder Message should be "Reminder: To escalate to manufacturer, send mail to Manufacturer contact.".
+
+2. Create a second Business Rule on the Incident table that runs when a record is inserted or updated. 
+
+- If the Incident has a Priority of 1 - Critical and the Service offering is Infinity (HHD), it should automatically populate the Manufacturer contact field. 
+
+- It should be populated to match the Contact specified in the Manufacturer record referenced on the Infinity (HHD) Service offering record.
+
+
+To begin, navigate to All > Incident > Open.
+7.5 Create an Update Set
+Lesson
+Update Sets are groups of configuration and customization changes that can be moved between ServiceNow instances as a single unit. They function as XML files containing record details, configuration changes, and state information that determines whether other instances can retrieve and apply those changes.
+
+Update Sets track changes to applications and platform features by writing modifications from tracked tables to the Customer Update table. This allows administrators to develop new functionality on non-production instances and promote verified changes through development, testing, and production environments. While every instance has a default Update Set, administrators should create named Update Sets for moving customizations between instances to maintain better organization and control over change management.
+
+Scenario
+You are a ServiceNow administrator working on a development instance where your team is preparing to enhance the Service Catalog. Stakeholders have requested modifications to the Catalog Item form to include audit fields that track when items are updated and by whom. Before making these configuration changes, you need to create a proper Update Set to capture all modifications so they can be safely promoted to the testing and production environments.
+
+Task Objectives
+1. Create and configure a new Update Set, in the Global scope, to capture configuration changes. 
+
+2. Name it "Sim Update Set", provide a Description of "Catalog Item form, add Updated and Updated by fields.", and ensure you make this your Current Set.
+
+To begin, select the globe icon at the top of your instance. Select 'Update set: Default [Global]', then select the plus sign (+) to create a new update set.
+
+ 7.6 Modify the catalog Item form
+Lesson
+Update Sets capture customizations and configuration changes but do not include actual data records. They track modifications such as form layouts, business rules, UI policies, report definitions, and other platform configurations. When you modify a form layout, the Update Set records the configuration change to the form structure, not the data within individual records.
+
+Understanding what Update Sets capture is critical for successful change management. Configuration changes like adding fields to forms, creating workflows, or modifying access controls are automatically tracked in the current Update Set. However, data records such as incidents, users, or catalog items themselves require separate export methods. This distinction ensures that Update Sets remain focused on structural changes that can be safely promoted between instances without unintentionally overwriting production data.
+
+Scenario
+You are a ServiceNow administrator who has just created an Update Set to track configuration changes. Stakeholders from the Service Catalog team have requested that audit fields be added to the Catalog Item form so they can easily see when items were last updated and by whom. You need to modify the iPad pro catalog item form to add these fields and then verify that your active Update Set has captured these configuration changes.
+
+Task Objectives
+In this simulator task, you will modify a catalog item form and verify the updates were captured in the current Sim Update Set. 
+
+1. Navigate to the iPad pro catalog item and open Form Builder.
+
+2. Add the Updated field to the form layout after the Active field.
+
+3. Add the Updated by field to the form layout after the Updated field.
+
+4. Confirm that the Sim Update Set captured the form layout changes.
+
+To begin, navigate to All > Service Catalog > Catalog Definitions > Maintain Items. Search for an open 'iPad pro'. 
+7.7 Complete the Update set
+Lesson
+Marking an Update Set as Complete is a critical step in the change management lifecycle that signals the configuration changes are ready for migration. When you change the state to Complete, the Update Set becomes available for other instances to retrieve while preventing any additional customizations from being tracked in that set. Exporting the completed Update Set as an XML file creates a portable package that can be transferred between instances through the retrieve and commit process.
+
+Scenario
+You are a ServiceNow administrator who has successfully captured form layout changes for the Service Catalog in your Sim Update Set. After verifying that all required configuration changes have been tracked, you are now ready to prepare the Update Set for migration to the testing environment. The next step in your change management process is to mark the Update Set as complete and export it as an XML file so it can be retrieved and applied by other ServiceNow instances.
+
+Task Objectives
+In this simulator task, you will finalize and export your Update Set for migration.
+
+1. Change the Sim Update Set State from In progress to Complete.
+
+2. Update the record, then export the record via 'Export to XML' in Related Links or use the context menu (three dots) > Export > XML (This Record). 
+
+3. Verify the update set has been downloaded to your local computer.
+
+To begin, select the globe icon at the top of your instance. Hover over 'Sim Update Set [Global]' and select the Open record icon. 
+7.8 Migrate Changes
+Lesson
+Update sets are a powerful mechanism in ServiceNow for migrating configuration changes between instances (such as from development to production). The update set migration process follows three essential steps: Retrieve, Preview, and Commit.
+
+Retrieve: Update sets marked as "Complete" are transferred from the source instance (sub-production) to the target instance (production). When using remote instances, the platform can automatically retrieve completed update sets.
+
+Preview: This step compares the retrieved update set with existing updates on the local instance to detect potential conflicts or incompatibilities before applying changes. Previewing helps ensure a smooth migration by identifying issues in advance.
+
+Commit: Once previewed and verified, committing the update set applies all changes to the target instance and creates a local copy containing an update record for every change made.
+
+Scenario
+You have received an XML file named "prb_manufacturer_update_set_25d…..xml" containing an update set called "Add Manufacturer to PRB Form." This update set will add a Manufacturer field to the Problem form below the Assigned to field. Your task is to import this XML file, preview the update set to check for conflicts, and commit it to apply the changes to your instance.
+
+Import the update set XML file (prb_manufacturer_update_set_25d…..xml), preview it to verify there are no conflicts, commit it to apply the changes, and verify that the Manufacturer field now appears on the Problem form below the Assigned to field.
+
+Task Objectives
+1. Verify current Problem form state and confirm the Manufacturer field is NOT displayed on the form below the Assigned to field.
+
+2. Import the update set:
+-  Use "Import Update Set from XML" link
+- Upload the prb_manufacturer_update_set_25d...xml file.
+
+3. Verify import success:
+- Locate and open the "Add Manufacturer to PRB Form" update set
+- Confirm State is "Loaded"
+- Review the Customer Updates related list
+
+4. Preview the update set.
+
+5. Commit the update set.
+
+6. Verify deployment and confirm Manufacturer field now appears on the form.
+
+To begin, navigate to All > System Update Sets > Retrieved Update Sets. Scroll past the list to Related Links and select 'Import Update Set from XML.' Upload the "prb_manufacturer_update_set_25d...xml file."
+
+
+
+
+To begin, navigate to All > User Administration > Users.
